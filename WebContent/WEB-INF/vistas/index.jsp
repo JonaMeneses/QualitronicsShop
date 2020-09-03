@@ -1,6 +1,7 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	    pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>     
 
 <html>
 <head>
@@ -12,6 +13,10 @@
 <link href="" rel="stylesheet">
 <meta charset="UTF-8">
 <title>QUALITRONICS</title>
+
+<style>
+body {oveflow-x: hidden }
+</style>
 </head>
 <body>
 
@@ -19,7 +24,7 @@
 <div class="row">
 	<div class="col-12">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	    <div class="container">
+	    <div class="container-fluid">
 	      <a href="" title="Bootstrap" class="navbar-brand">
 	          <c:url value="/content/img/qualitronicsNav.png" var="imgNav" />
 			<img src="${imgNav}" style="width: 120px; height: 45px;" class="store-image" alt="Bootstrap" />
@@ -50,10 +55,12 @@
 	                </li>
 	                <li class="nav-item  ">
 	                <a  title="Contact" class="level-1 trsn nav-link" >Gamer</a>
-	                </li>  
-	                <li class="nav-item  ">
-	                <a   title="Contact" class="level-1 trsn nav-link" >ADMIN</a>
-	                </li>      
+	                </li> 
+	                 <s:authorize access="hasRole('ROLE_ADMIN')">
+		                <li class="nav-item  ">
+		                <a   title="Contact" class="level-1 trsn nav-link" >ADMIN</a>
+		                </li>   
+	                </s:authorize>   
 	        </ul>
 	        <ul class="nav navbar-nav float-right nav-top"> 
 	          <li >
@@ -62,47 +69,67 @@
 	              <span id="nav-bar-cart"><span class="cart-size">0</span> Producto(s) | $0</span>
 	            </a>
 	          </li>
-	          <li >
-	            <a href="login.html" id="login-link" class="trsn nav-link" title="Ingresar aBootstrap">
-	              <i class="fas fa-user"></i>
-	              <span class="customer-name">
-	                Ingresar
-	              </span>
-	            </a>
+	          
+	        <li >
+	          <c:url value="/logout" var="logoutIndex" />
+	             <s:authorize access="isAuthenticated()">
+	             
+					 <a href="${logoutIndex}" id="login-link" class="trsn nav-link" title="Cerrar sesion">
+		              <i class="fas fa-user"></i>
+		              <span class="customer-name">
+		              <s:authentication property="principal.username"/>
+		              </span>
+		            </a>
+	            	</s:authorize>
+	            	 <c:url value="/login" var="loginIndex" />
+	            <s:authorize access="isAnonymous()">
+					 <a href="${loginIndex}" id="login-link" class="trsn nav-link" title="Cerrar sesion">
+		              <i class="fas fa-user"></i>
+		              <span class="customer-name">
+		              	Ingresar
+		              </span>
+		            </a>
+	            	</s:authorize>
 	          </li>          
 	        </ul>
-	        <form id="search_mini_form" class="navbar-form float-right form-inline d-none d-lg-flex">
-	          <input type="text" id="txtFiltro" value="" name="q" class="form-control form-control-sm" onFocus="javascript:this.value=''" placeholder="Buscar productos" />
-	          <button id="btnBuscarCatalogo" class="btn btn-secondary btn-sm"><i class="fas fa-search"></i></button>
-	        </form>
+	       
 	        <ul class="social list-inline d-lg-none text-center">
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
 	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block">
-	    <div class="container">
+	    <div class="container-fluid">
 	      <div class="collapse navbar-collapse" id="navbarsContainer-2">
 	        <ul class="navbar-nav mr-auto">
 	            <li class="nav-item  ">
 	                <a href="/qualitronicshop"  title="Inicio" class="level-1 trsn nav-link" >Inicio</a>
 	                </li> 
 	                <li class="nav-item  ">
-	                <a onClick="obtenerListadoArticulosView(1)"  title="Techno" class="level-1 trsn nav-link" >Desktop</a>
+	                <a onClick="obtenerListadoArticulosPorCategoriaView(1)"  title="Techno" class="level-1 trsn nav-link" >Desktop</a>
 	                </li>
 	                 <li class="nav-item  ">
-	                <a onClick="obtenerListadoArticulosView(2)" title="About Us" class="level-1 trsn nav-link" >Celulares</a>
+	                <a onClick="obtenerListadoArticulosPorCategoriaView(3)" title="About Us" class="level-1 trsn nav-link" >Celulares</a>
 	                </li>
 	                 <li class="nav-item  ">
-	                <a onClick="obtenerListadoArticulosView(3)"  title="Blog" class="level-1 trsn nav-link" >Laptop</a>
+	                <a onClick="obtenerListadoArticulosPorCategoriaView(2)"  title="Blog" class="level-1 trsn nav-link" >Laptop</a>
 	                </li>
 	                <li class="nav-item  ">
-	                <a href="#"  title="Contact" class="level-1 trsn nav-link" >Gamer</a>
+	                <a onClick="obtenerListadoArticulosPorFiltroView('game')"  title="Contact" class="level-1 trsn nav-link" >Gamer</a>
 	                </li>  
-	                <li class="nav-item  ">
+	                <s:authorize access="hasRole('ROLE_ADMIN')">
+		                 <li class="nav-item  ">
 	                <a  title="Contact" onClick="obtenerAdminView()" class="level-1 trsn nav-link" >ADMIN</a>
-	                </li>      
+	                </li>  
+	                </s:authorize> 
+	            
 	        </ul>
+	        
+	           <form id="search_mini_form" class="navbar-form float-right form-inline d-none d-lg-flex">
+	          <input type="text" id="txtFiltro" value="" name="q" class="form-control form-control-sm" onFocus="javascript:this.value=''" placeholder="Buscar productos" />
+	          <button id="btnBuscarCatalogo" class="btn btn-secondary btn-sm"><i class="fas fa-search"></i></button>
+	        </form>
+	        
 	      </div>
 	    </div>
 	  </nav>
@@ -162,5 +189,14 @@
 <script src="${scriptIndex}"></script>
 <c:url var="jsDialog" value="/content/web/js/modalDialog.js" />
 <script src="${jsDialog}"></script>
+<script type="text/javascript">
+var $body = $(document);
+$body.bind('scroll', function() {
+    // "Desactivar" el scroll horizontal
+    if ($body.scrollLeft() !== 0) {
+        $body.scrollLeft(0);
+    }
+});
+</script>
 
 </html>

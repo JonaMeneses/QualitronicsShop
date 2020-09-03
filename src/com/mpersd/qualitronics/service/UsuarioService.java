@@ -2,15 +2,18 @@ package com.mpersd.qualitronics.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mpersd.qualitronics.idal.IUsuarioDao;
+import com.mpersd.qualitronics.iservice.IUsuarioService;
 import com.mpersd.quialitronics.model.ResultBase;
 import com.mpersd.quialitronics.model.Usuario;
 
 @Service
-public class UsuarioService implements com.mpersd.qualitronics.iservice.IUsuarioService {
+public class UsuarioService implements IUsuarioService {
 	
+	@Autowired
 	private IUsuarioDao usuarioDao;
 	
 
@@ -60,7 +63,7 @@ public class UsuarioService implements com.mpersd.qualitronics.iservice.IUsuario
 	public ResultBase actualizar(Usuario usuario) {
 		ResultBase result = new ResultBase();
 		try {
-			
+			System.out.println("entro a service");
 			result = usuarioDao.actualizar(usuario);
 			
 		} catch (Exception e) {

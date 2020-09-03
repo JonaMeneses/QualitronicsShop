@@ -29,6 +29,11 @@ public class ArticuloService implements IArticuloService {
 	public List<Articulo> getArticulosPorFiltro(String sFiltro) {
 		return articuloDao.getArticulosPorFiltro(sFiltro);
 	}
+	
+	@Override
+	public List<Articulo> getArticulosPorCategoria(String sFiltro) {
+		return articuloDao.getArticulosPorCategoria(sFiltro);
+	}
 
 	@Override
 	public ResultBase insertar(Articulo articulo) {

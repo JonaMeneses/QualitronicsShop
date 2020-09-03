@@ -1,6 +1,6 @@
 function obtenerArticulosView(){
     $.ajax({
-        url:"articulos/detalleView"
+        url:"articulos/listado"
         ,type: 'GET'    
         ,dataType: 'html'
         ,success:function(View){

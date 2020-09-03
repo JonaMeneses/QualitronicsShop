@@ -13,7 +13,6 @@
 		  <form>
 		      <h1>Articulos</h1>
 		      <hr>
-		    
 				<form:input id="nId" type="hidden" path="nId" />
 		    <div class="form-row">
 		      <div class="form-group col-md-6">

@@ -13,5 +13,6 @@ public interface IArticuloDao {
 	ResultBase actualizar(Articulo articulo);
 	Articulo obtenerPorId(int id);
 	public List<Articulo> getArticulosPorFiltro(String sFiltro);
+	public List<Articulo> getArticulosPorCategoria(String sFiltro);
 
 }

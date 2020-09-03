@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.mpersd.quialitronics.model.Articulo;
 import com.mpersd.quialitronics.model.Usuario;
 
 public class UsuarioToMapper implements RowMapper<Usuario> {
@@ -22,7 +21,10 @@ public class UsuarioToMapper implements RowMapper<Usuario> {
 				,rs.getString("sPaterno")
 				,rs.getString("sMaterno")
 				,rs.getInt("nEdad")
+				,rs.getInt("nIdRol")
+				,rs.getString("sNombreRol")
 				,rs.getDate("dFechaAlta")
-				,rs.getBoolean("bActivo"));
+				,rs.getBoolean("bActivo")
+				);
 	}
 }

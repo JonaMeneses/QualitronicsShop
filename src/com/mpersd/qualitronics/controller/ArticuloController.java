@@ -53,8 +53,15 @@ public class ArticuloController {
 	}
 	
 	@RequestMapping(value="listadoPorFiltro",method=RequestMethod.GET)
-	public String listado(ModelMap modelo,@RequestParam("sFiltro") String sFiltro) {
+	public String listadoPorFiltro(ModelMap modelo,@RequestParam("sFiltro") String sFiltro) {
 		List<Articulo> lista = articuloService.getArticulosPorFiltro(sFiltro);
+		modelo.addAttribute("articulos",lista);
+		return "catalogoArticulos/index";
+	}
+	
+	@RequestMapping(value="listadoPorCategoria",method=RequestMethod.GET)
+	public String listadoPorCategoria(ModelMap modelo,@RequestParam("sFiltro") String sFiltro) {
+		List<Articulo> lista = articuloService.getArticulosPorCategoria(sFiltro);
 		modelo.addAttribute("articulos",lista);
 		return "catalogoArticulos/index";
 	}

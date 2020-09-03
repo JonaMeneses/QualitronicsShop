@@ -43,6 +43,13 @@ public class ArticuloDao implements IArticuloDao {
 		System.out.println(plantilla.query(sql, new ArticuloToMapper()));
 		return plantilla.query(sql, new ArticuloToMapper());
 	}
+	
+	@Override
+	public List<Articulo> getArticulosPorCategoria(String sFiltro) {
+		String sql = "SELECT *  FROM articulos WHERE bActivo = 1 and nIdCategoria = "+sFiltro+"";
+		System.out.println(plantilla.query(sql, new ArticuloToMapper()));
+		return plantilla.query(sql, new ArticuloToMapper());
+	}
 
 	@Override
 	public ResultBase insertar(Articulo articulo) {

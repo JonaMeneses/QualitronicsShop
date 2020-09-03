@@ -34,19 +34,25 @@ background-repeat: no-repeat;
      <c:url value="/content/img/qualitronics.png" var="icono" />
       <img src="${icono}" id="icon" style="width: 150px; height: 150px;" id="icon" alt="User Icon" />
     </div>
-
+<c:url value="/login" var="loginUrl"/>
     <!-- Login Form -->
-    <form action="index.html" >
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="contraseña">
-      <input type="submit" class="fadeIn fourth" value="Entrar">
+    <form action="${loginUrl}" method="post">
+    <c:if test="${param.error != null}">
+    <div class="alert alert-danger">Username y password incorrectos, intentalo nuevamente.</div>
+</c:if>
+    <div class="">
+	      <input type="text" id="login" class="fadeIn second" name="username" placeholder="Usuario">
+	      <input type="password" id="password" class="fadeIn third" name="password" placeholder="contraseña">
+	      <input type="submit" class="fadeIn fourth" value="Entrar">
+      </div>
     </form>
     
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="/vistas/Registrarme.jsp">Registrarme</a><br>
-      <a class="underlineHover" href="/vistas/index.jsp">Ir al sitio</a>
+      <a class="underlineHover">Registrarme</a><br>
+      <c:url value="/" var="home"/>
+      <a href="${home}" class="underlineHover">Ir al sitio</a>
     </div>
 
   </div>

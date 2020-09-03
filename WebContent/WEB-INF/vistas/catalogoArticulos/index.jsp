@@ -4,7 +4,7 @@
  <c:url  var="estilo"  value="/content/web/css/articulos/index.css" />
    <link href="${estilo}"  rel="stylesheet">
 
-<div class="container-fluid">
+
 	  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 	    <ol class="carousel-indicators">
 	      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -40,14 +40,7 @@
 	     
 	      </div>	
 	   
-	    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-	      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	      <span class="sr-only">Previous</span>
-	    </a>
-	    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-	      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-	      <span class="sr-only">Next</span>
-	    </a>
+	    
 	 
 	<div class="container-fluid">
 	   <c:set var="contador" value="${0}" />
@@ -99,7 +92,7 @@
 	 
 	</div> <!-- cierre de container fluid  -->  	
 	
-	</div>
+	
 	<hr>
 
 <c:url var="scriptIndex" value="/content/web/js/articulos/index.js" />

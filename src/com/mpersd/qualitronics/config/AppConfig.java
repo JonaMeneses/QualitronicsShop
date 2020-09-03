@@ -2,8 +2,10 @@ package com.mpersd.qualitronics.config;
 
 import java.util.ResourceBundle;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,6 +13,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -88,6 +95,30 @@ public class AppConfig implements WebMvcConfigurer{
 		ds.setUsername("root");
 		ds.setPassword("");
 		return ds;
+	}
+	
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+		emf.setDataSource(dataSource());
+		emf.setPackagesToScan("com.mpersd.qualitronics.dominio");
+		emf.setPersistenceUnitName("springPU");
+		
+		HibernateJpaVendorAdapter vendor = new HibernateJpaVendorAdapter();
+		vendor.setShowSql(true);
+		vendor.setDatabase(Database.MYSQL);
+		
+		emf.setJpaVendorAdapter(vendor);
+		
+		return emf;
+	}
+	
+	@Bean
+	@Autowired
+	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+		JpaTransactionManager txm = new JpaTransactionManager();
+		txm.setEntityManagerFactory(emf);
+		return txm;
 	}
 	
 	

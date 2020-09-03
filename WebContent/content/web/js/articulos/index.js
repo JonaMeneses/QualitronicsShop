@@ -1,6 +1,30 @@
+function obtenerDetalleView(nId){
+    $.ajax({
+        url:"articulos/detalleView"
+        ,data : {nId}
+        ,type: 'GET'    
+        ,dataType: 'html'
+        ,success:function(data){
+	console.log("entro");
+            if(data)
+            {
+                
+				$("#ModalDetalle").modal("show");
+				$("#ModalDetalleBody").html(data);
+				$("#ModalTitulo").html("Detalle Articulo");
+
+            }
+        }
+        ,error:function(xhr,status){
+            console.log( "error en llamada");
+            console.log(JSON.stringify(xhr));
+        }
+    });
+}
+
 function obtenerFormularioView(){	 
 	$.ajax({
-        url:"usuarios/form"
+        url:"articulos/detalleView"
         ,type: 'GET'  
         ,dataType: 'html'
         ,success:function(View){

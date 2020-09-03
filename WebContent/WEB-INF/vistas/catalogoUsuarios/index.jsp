@@ -7,14 +7,20 @@
 		<div class="col-12">
   <h1>Usuarios</h1>
     <br>
-  <table class="table">
+     <c:if test="${param.done != null }">
+			<div class="alert alert-success">Guardado correctamente</div>
+		</c:if>
+		<c:if test="${param.delete != null }">
+			<div class="alert alert-success">Borrado correctamente</div>
+		</c:if>
+  <table class="table" id="tablaUsr">
       <thead class="thead-default">
       <tr>
-          <th></th>
           <th>Email</th>
           <th>Nombre</th>
           <th>Edad</th>
           <th>Rol</th>
+          <th>Acciones</th>
       </tr>
       </thead>
       <tbody>
@@ -23,3 +29,5 @@
 		</div>
 	</div>
 </div>
+<c:url var="scriptIndex" value="/content/web/js/usuarios/index.js" />
+<script src="${scriptIndex}"></script>

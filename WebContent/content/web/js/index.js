@@ -29,6 +29,22 @@ function obtenerListadoArticulosPorFiltroView(sFiltro){
     });
 }
 
+function obtenerListadoArticulosPorCategoriaView(sFiltro){
+    $.ajax({
+        url:"articulos/listadoPorCategoria"
+        ,type: 'GET'
+		,data: {sFiltro:sFiltro}   
+        ,dataType: 'html'
+        ,success:function(view){
+            $("#contentPage").html(view);
+        }
+        ,error:function(xhr,status){
+            console.log( "error en llamada");
+            console.log(JSON.stringify(xhr))	;
+        }
+    });
+}
+
 
 
 function obtenerAdminView(){

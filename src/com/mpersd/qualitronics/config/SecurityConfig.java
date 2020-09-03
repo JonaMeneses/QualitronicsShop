@@ -31,23 +31,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		auth.jdbcAuthentication()
 			.dataSource(dataSource)
-			.usersByUsernameQuery("select sEmail as username, sPassword as password, bActivo as enabled from usuarios where sEmail = ?")
-			.authoritiesByUsernameQuery("select t1.sEmail as username, t2.sNombre as authority from usuarios t1 inner join roles t2 on t2.nIdUsuario = t1.nId where sEmail = ?")
+			.usersByUsernameQuery("select sEmail as username, sContraseña as password, bActivo as enabled from usuarios where sEmail = ?")
+			.authoritiesByUsernameQuery("select t1.sEmail as username, t2.sNombre as AUTHORITY from usuarios t1 inner join roles_usuarios"+
+										" t3 on t3.nIdUsuario = t1.nId inner join roles t2 on t2.nId = t3.nIdRol where t1.sEmail = ?")
 			.passwordEncoder(passwordEncoder());
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().and()
+		http.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/","/content/**","/tienda").permitAll()
+			.antMatchers("/","/content/**","/articulos/").permitAll()
+			.antMatchers(HttpMethod.GET,"/articulos/**").permitAll()
+			.antMatchers(HttpMethod.POST,"/articulos/**").permitAll()
 			.antMatchers(HttpMethod.GET,"/api/**").permitAll()
 			.antMatchers(HttpMethod.POST,"/api/**").permitAll()
 			.antMatchers(HttpMethod.PUT,"/api/**").permitAll()
 			.antMatchers(HttpMethod.DELETE,"/api/**").permitAll()
 			.antMatchers(HttpMethod.OPTIONS,"/api/**").permitAll()
 			//Restricciones de ACL acces control list
-			.antMatchers("/angular","checkout").hasRole("MEMBER")
+			.antMatchers("checkout").hasRole("USER")
 			.antMatchers("/admin/**").hasRole("ADMIN")
 			//default cualquier otra liga requiere autorizacion
 			.anyRequest().authenticated()

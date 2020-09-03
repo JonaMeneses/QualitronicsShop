@@ -28,6 +28,7 @@ public class UsuarioApiController {
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Usuario>> obtenerListado(){
+		System.out.println("entro a indexusuarios");
 		List<Usuario> lista = usuarioService.obtenerListado();
 		
 		if(lista == null) {
@@ -70,7 +71,8 @@ public class UsuarioApiController {
 	}
 	
 	@DeleteMapping(path="/{nId}")
-	public ResponseEntity<ResultBase> borrarDelete(@PathVariable("nId")int nId){
+	public ResponseEntity<ResultBase> borrar(@PathVariable("nId")int nId){
+		System.out.println("entro a borrado con id "+ nId);
 		ResultBase result =new ResultBase();
 		result  = usuarioService.borrar(nId);
 		

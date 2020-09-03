@@ -2,25 +2,56 @@ package com.mpersd.quialitronics.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class Usuario extends EntidadBase{
 	
+	@NotNull
+	@Length(min = 3,max = 50,message = "El campo es requerido con maximo 50 caracteres")
 	private String sEmail;
+	@NotNull
+	@Length(min = 3,max = 50,message = "El campo es requerido con maximo 50 caracteres")
 	private String sContraseña;
+	@NotNull
+	@Length(min = 3,max = 50,message = "El campo es requerido con maximo 50 caracteres")
 	private String sNombre;
-	private String Paterno;
+	@NotNull
+	@Length(min = 3,max = 50,message = "El campo es requerido con maximo 50 caracteres")
+	private String sPaterno;
+	@NotNull
+	@Length(min = 3,max = 50,message = "El campo es requerido con maximo 50 caracteres")
 	private String sMaterno;
+	@NotNull
+	@Min(value = 18,message = "El minimo permitido es 18 años")
+	@Max(value = 99,message = "El maximo permitido es 99 años")
 	private int nEdad;
+	@NotNull
+	@Min(value = 1,message = "El minimo permitido es 18 años")
+	@Max(value = 99,message = "El maximo permitido es 99 años")
+	private int nIdRol;
+	private String sNombreRol;
 	
-	public Usuario(int nId,String sEmail, String sContraseña, String sNombre, String paterno,
-					String sMaterno, int nEdad, Date dFechaCreacion,boolean bActivo) {
+	public Usuario() {
+		super();
+	}
+	
+	public Usuario(int nId,String sEmail, String sContraseña, String sNombre, String sPaterno,
+					String sMaterno, int nEdad,int nIdRol,String sNombreRol, Date dFechaCreacion,boolean bActivo) {
 		super(nId,dFechaCreacion,bActivo);
 		this.sEmail = sEmail;
 		this.sContraseña = sContraseña;
 		this.sNombre = sNombre;
-		Paterno = paterno;
+		this.sPaterno = sPaterno;
 		this.sMaterno = sMaterno;
 		this.nEdad = nEdad;
+		this.nIdRol = nIdRol;
+		this.sNombreRol = sNombreRol;
 	}
+	
 
 	public String getsEmail() {
 		return sEmail;
@@ -46,12 +77,12 @@ public class Usuario extends EntidadBase{
 		this.sNombre = sNombre;
 	}
 
-	public String getPaterno() {
-		return Paterno;
+	public String getsPaterno() {
+		return sPaterno;
 	}
 
-	public void setPaterno(String paterno) {
-		Paterno = paterno;
+	public void setsPaterno(String paterno) {
+		sPaterno = paterno;
 	}
 
 	public String getsMaterno() {
@@ -69,7 +100,21 @@ public class Usuario extends EntidadBase{
 	public void setnEdad(int nEdad) {
 		this.nEdad = nEdad;
 	}
-	
+	public int getnIdRol() {
+		return nIdRol;
+	}
+
+	public void setnIdRol(int nIdRol) {
+		this.nIdRol = nIdRol;
+	}
+
+	public String getsNombreRol() {
+		return sNombreRol;
+	}
+
+	public void setsNombreRol(String sNombreRol) {
+		this.sNombreRol = sNombreRol;
+	}
 	
 	
 

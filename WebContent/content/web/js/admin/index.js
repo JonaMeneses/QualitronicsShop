@@ -29,6 +29,22 @@ function obtenerDashboardView(){
     });
 }
 
+function obtenerUsuariosView(){
+	 $.ajax({
+        url:"usuarios/"
+        ,type: 'GET'    
+        ,dataType: 'html'
+        ,success:function(View){
+           $("#adminContainer").html(View);
+			$("#adminContainer").prop("formulario","Usuarios");
+        }
+        ,error:function(xhr,status){
+            console.log( "error en llamada");
+            console.log(JSON.stringify(xhr));
+        }
+    });
+}
+
 function eliminar(){
 	 $.ajax({
         url:"admin/dashboard"
@@ -69,7 +85,7 @@ $(document).ready(function () {
 				obtenerFormularioArticulosView();
 			break;
 			case "Usuarios":
-				//obtenerFormularioArticulosView();
+				obtenerFormularioUsuarioView();
 			break;
 		}
 		

@@ -1,35 +1,13 @@
-function obtenerDetalleView(nId){
-    $.ajax({
-        url:"articulos/detalleView"
-        ,data : {nId}
-        ,type: 'GET'    
-        ,dataType: 'html'
-        ,success:function(data){
-	console.log("entro");
-            if(data)
-            {
-                
-				$("#ModalDetalle").modal("show");
-				$("#ModalDetalleBody").html(data);
-				$("#ModalTitulo").html("Detalle Articulo");
-
-            }
-        }
-        ,error:function(xhr,status){
-            console.log( "error en llamada");
-            console.log(JSON.stringify(xhr));
-        }
-    });
-}
-
 function llenarTabla(usuarios){
-	$("#tablaUsuarios tbody").empty();
+
+	$("#tablaUsr tbody").empty();
 		$(usuarios).each(function(idx,usr){
+			
 			$tr = $("<tr/>");
 			$tdEmail = $("<td/>",{'html' : usr.sEmail});
 			$tdNombre = $("<td/>",{'html' : usr.sNombre});
 			$tdEdad = $("<td/>",{'html' : usr.nEdad});
-			$tdRol = $("<td/>",{'html' : usr.sRol});
+			$tdRol = $("<td/>",{'html' : usr.sNombreRol});
 			$tdAcciones = $("<td/>");
 					
 			//CRUD
@@ -39,30 +17,30 @@ function llenarTabla(usuarios){
 				"class": "btn btn-primary"
 			}).click(e=>{
 				e.preventDefault();
-				buscarPorId(usr.nId);
+				obtenerFormularioPorIdView(usr.nId);
 					
 			});
 			$btnBorrar = $("<a/>",{
-				"html":'<i class="fas fa-pencil-alt"></i>',
+				"html":'<i class="far fa-trash-alt"></i>',
 				"href": "#",
 				"class": "btn btn-danger"
 			}).click(e=>{
 				e.preventDefault();
-				borrar(usr.nId);
+				eliminar(usr.nId);
 			});
 			$tdAcciones.append($btnEditar).append($btnBorrar);
 
 			$tr.append($tdEmail).append($tdNombre).append($tdEdad).append($tdRol).append($tdAcciones);
 			
-			$("#tabla tbody").append($tr);
+			$("#tablaUsr tbody").append($tr);
 		});
 }
 
 function obtenerListado(){
     $.ajax({
-        url:"usuarios/"
+        url:"api/usuarios/"
         ,type: 'GET'    
-        ,dataType: 'html'
+        ,dataType: 'json'
         ,success:function(data){
 			llenarTabla(data);
         }
@@ -71,6 +49,74 @@ function obtenerListado(){
             console.log(JSON.stringify(xhr));
         }
     });
+}
+
+function obtenerFormularioUsuarioView(){	 
+	$.ajax({
+        url:"usuarios/altaUsuario"
+        ,type: 'GET'  
+        ,dataType: 'html'
+        ,success:function(View){
+           $("#adminContainer").html(View);
+        }
+        ,error:function(xhr,status){
+            console.log( "error en llamada");
+            console.log(JSON.stringify(xhr));
+        }
+    });
+}
+
+function obtenerFormularioPorIdView(id){	
+	
+	$.ajax({
+        url:"usuarios/actualizarUsuario"
+        ,type: 'GET'
+		,data: {nId: id}
+        ,dataType: 'html'
+        ,success:function(View){
+           $("#adminContainer").html(View);
+        }
+        ,error:function(xhr,status){
+            console.log( "error en llamada");
+            console.log(JSON.stringify(xhr));
+        }
+    });
+}
+
+function obtenerFormularioDetalleView(id){	
+	
+	$.ajax({
+        url:"usuarios/detalleUsuario"
+        ,type: 'GET'
+		,data: {nId: id}
+        ,dataType: 'html'
+        ,success:function(View){
+           $("#adminContainer").html(View);
+        }
+        ,error:function(xhr,status){
+            console.log( "error en llamada");
+            console.log(JSON.stringify(xhr));
+        }
+    });
+}
+
+function eliminar(nId){	
+	modalDialog.showDialog("Aviso","Desea eliminar el registro?",eBotones.YESNO,eIconos.INFO,function(e){
+		if(e)
+		{
+	$.ajax({
+        url:"api/usuarios/"+nId
+        ,type: "DELETE"
+        ,success:function(result){
+			obtenerListado();
+        }
+        ,error:function(xhr,status){
+            console.log( "error en llamada");
+            console.log(JSON.stringify(xhr));
+        }		
+    });
+	}
+ });
 }
 
 $(document).ready(function () {
