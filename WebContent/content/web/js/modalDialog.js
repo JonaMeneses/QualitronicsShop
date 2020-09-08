@@ -1,6 +1,6 @@
 const eBotones = {
     YES:'<button type="button" id="btnOkModal" class="btn btn-primary" data-dismiss="modal">OK</button>',
-    YESNO: '<button type="button" id="btnOkModal" class="btn btn-primary" data-dismiss="modal">OK</button>'
+    YESNO: '<button type="button" id="btnYesModal" class="btn btn-primary" data-dismiss="modal">OK</button>'
     +'<button type="button" id="btnNoModal" class="btn btn-secondary" data-dismiss="modal">No</button>',
     GUARDARCANCEL: '<button type="button" id="btnGuardarModal" class="btn btn-primary">Guardar</button>'
     +'<button type="button" id="btnCancelModal" class="btn btn-danger" data-dismiss="modal">Cancelar</button>',
@@ -17,9 +17,6 @@ const eIconos = {
 };
 
     var modalDialog =  (function(){
-
-
-
 
         function CrearDialog(p_sTitulo = 'Titulo',p_sMensaje = 'Mensaje',p_dialogContainterId,Botones = eBotones.YES,Iconos = eIconos.INFO){
 
@@ -44,9 +41,9 @@ const eIconos = {
         return modalHtml;
         }
 
-        function CrearModal(p_sTitulo = 'Titulo', p_sCuerpoHtml = 'Cuerpo',Botones= eBotones.YESCANCEL){
+        function CrearModal(p_sTitulo = 'Titulo', p_sCuerpoHtml = 'Cuerpo',Botones= eBotones.YESCANCEL,p_idDiv){
 
-            var modalHtml = '<div class="modal fade" id="modalContainer"><div class="modal-dialog modal-dialog-scrollable modal-lg">'
+            var modalHtml = '<div class="modal fade" id="'+p_idDiv+'"><div class="modal-dialog modal-dialog-scrollable modal-lg">'
             +'<div class="modal-content">'
                 +'<div class="modal-header">'
                     +'<h5 class="modal-title" id="TituloModal">'+p_sTitulo+'</h5>'
@@ -119,7 +116,8 @@ const eIconos = {
                     callback = function(){};
                 }
 
-                $("#btnOkModal").click(function (e) {
+                $("#btnYesModal").click(function (e) {
+					e.preventDefault();
                    callback(true);
                 });
 
@@ -131,9 +129,9 @@ const eIconos = {
             },
             showModal : function(p_sCuerpoHtml = '',p_sTitulo = '',Botones,callback,p_containerId = "modalContainer"){
 
-                var modalHtml = CrearModal(p_sCuerpoHtml, p_sTitulo,Botones);
+                let modalHtml = CrearModal(p_sTitulo,p_sCuerpoHtml,Botones,p_containerId);
 
-                var $modalContainer = $("#"+p_containerId)
+                let $modalContainer = $("#"+p_containerId)
 
                 $modalContainer.replaceWith(modalHtml);
 
@@ -155,8 +153,6 @@ const eIconos = {
                 var $toastContainer = $("#"+p_containerId)
 
                 $toastContainer.replaceWith(toastHtml);
-
-                console.log($toastContainer)
 
                 $(".toast").toast('show');
 
@@ -202,7 +198,6 @@ const eIconos = {
 
 
             }
-
     })();
 
 

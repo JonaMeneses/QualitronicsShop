@@ -43,9 +43,12 @@ public class Articulo extends EntidadBase{
 	@NotNull
 	@Min(value = 1,message = "El minimo permitido es 1")
 	private int nIdCategoria;
+	private  int nCantidad = 0;
 	
 	
 	
+	
+
 	public Articulo() {
 		super();
 	}
@@ -163,6 +166,15 @@ public class Articulo extends EntidadBase{
 
 	public void setnIdCategoria(int nIdCategoria) {
 		this.nIdCategoria = nIdCategoria;
+	}
+
+	public int getnCantidad() {
+		return nCantidad;
+	}
+
+
+	public void setnCantidad(int nCantidad) {
+		this.nCantidad = nCantidad;
 	}
 
 	

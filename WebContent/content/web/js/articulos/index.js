@@ -8,11 +8,7 @@ function obtenerDetalleView(nId){
 	console.log("entro");
             if(data)
             {
-                
-				$("#ModalDetalle").modal("show");
-				$("#ModalDetalleBody").html(data);
-				$("#ModalTitulo").html("Detalle Articulo");
-
+				 modalDialog.showModal(data,"Detalle",eBotones.YES,function(){});
             }
         }
         ,error:function(xhr,status){

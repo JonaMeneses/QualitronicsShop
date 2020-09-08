@@ -64,7 +64,7 @@ body {oveflow-x: hidden }
 	        </ul>
 	        <ul class="nav navbar-nav float-right nav-top"> 
 	          <li >
-	            <a id="cart-link" href="carrito.html" class="trsn nav-link" title="Ver/Editar Carro">
+	            <a id="cart-link" onClick="obtenerCarritoView()" class="trsn nav-link" title="Ver/Editar Carro">
 	              <i class="fas fa-shopping-cart"></i>
 	              <span id="nav-bar-cart"><span class="cart-size">0</span> Producto(s) | $0</span>
 	            </a>
@@ -139,43 +139,13 @@ body {oveflow-x: hidden }
 
 
 </div>
-	<div class="modal fade" tabindex="-1" id="ModalDetalle" role="dialog">
-	  <div class="modal-dialog modal-lg" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h3 class="modal-title" id="ModalTitulo">Modal title</h3>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body" id="ModalDetalleBody">
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
 	
-	<div class="modal fade" tabindex="-1" id="ModalCarrito" role="dialog">
-	  <div class="modal-dialog modal-lg" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h3 class="modal-title" id="ModalCarritoTitulo">Modal title</h3>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body" id="ModalCarritoBody">
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
 	
+	
+	<div id="modalContainer"></div>
+	<div  id="modalCarrito"></div>
 	<div id="modalDialogContainer"></div>
+	<div id="toastDialog"></div>
 </body>
  <c:url var="jquery" value="/content/js/jquery.js" />
 <script src="${jquery}"></script>

@@ -18,6 +18,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -29,10 +30,13 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableWebMvc
 @ComponentScan(basePackages = "com.mpersd.qualitronics")
 @Configuration
+@EnableTransactionManagement
+@EnableSwagger2
 public class AppConfig implements WebMvcConfigurer{
 
 	
@@ -101,7 +105,7 @@ public class AppConfig implements WebMvcConfigurer{
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(dataSource());
-		emf.setPackagesToScan("com.mpersd.qualitronics.dominio");
+		emf.setPackagesToScan("com.mpersd.qualitronics.entities");
 		emf.setPersistenceUnitName("springPU");
 		
 		HibernateJpaVendorAdapter vendor = new HibernateJpaVendorAdapter();

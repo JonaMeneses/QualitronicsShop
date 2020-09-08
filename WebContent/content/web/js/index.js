@@ -1,3 +1,13 @@
+class Articulo{
+		constructor(nId,sNombre,sMarca,nPrecio,sImgURL1){
+			this.id = nId;
+			this.sNombre = sNombre;
+			this.sMarca = sMarca;
+			this.nPrecio = nPrecio;
+			this.sImgURL1 = sImgURL1;
+		}
+	}
+
 function obtenerListadoArticulosView(){
     $.ajax({
         url:"articulos/"
@@ -62,6 +72,36 @@ function obtenerAdminView(){
     });
 }
 
+function obtenerCarritoView(){
+	 $.ajax({
+        url:"compras/carrito"
+        ,type: 'GET'    
+        ,dataType: 'html'
+        ,success:function(view){
+			
+            modalDialog.showModal(view,"Carrito de compras",eBotones.YES,function(){},"modalCarrito");
+        }
+        ,error:function(xhr,status){
+            console.log( "error en llamada");
+            console.log(JSON.stringify(xhr));
+        }
+    });
+}
+
+function obtenerCheckoutView(){
+	 $.ajax({
+        url:"admin/"
+        ,type: 'GET'    
+        ,dataType: 'html'
+        ,success:function(view){
+            showModal(view, "")
+        }
+        ,error:function(xhr,status){
+            console.log( "error en llamada");
+            console.log(JSON.stringify(xhr));
+        }
+    });
+}
 	
 $(document).ready(function () {
 	
@@ -74,8 +114,7 @@ $(document).ready(function () {
 	$("#btnBuscarCatalogo").on("click",()=>{
 		let filtro = $("#txtFiltro").val();
 		obtenerListadoArticulosPorFiltroView(filtro);
-	})
-	
+	});
 	
 	$('#ModalDetalle').on('show.bs.modal', function () {
 	    $('.modal .modal-body').css('overflow-y', 'auto'); 

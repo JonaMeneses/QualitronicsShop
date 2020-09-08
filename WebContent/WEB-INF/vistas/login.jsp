@@ -9,7 +9,7 @@
     <c:url  var="estilo"  value="/content/web/css/login.css" />
    <link href="${estilo}"  rel="stylesheet">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Login</title>
 <c:url var="fondoLogin" value="/content/img/fondologin.jpg" />
 <style>
 body {

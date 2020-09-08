@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/","/content/**","/articulos/").permitAll()
+			.antMatchers("/","/content/**","/articulos").permitAll()
 			.antMatchers(HttpMethod.GET,"/articulos/**").permitAll()
 			.antMatchers(HttpMethod.POST,"/articulos/**").permitAll()
 			.antMatchers(HttpMethod.GET,"/api/**").permitAll()
@@ -50,10 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.DELETE,"/api/**").permitAll()
 			.antMatchers(HttpMethod.OPTIONS,"/api/**").permitAll()
 			//Restricciones de ACL acces control list
-			.antMatchers("checkout").hasRole("USER")
+			.antMatchers("/compras/checkout").hasAnyRole("USER","ADMIN")
 			.antMatchers("/admin/**").hasRole("ADMIN")
 			//default cualquier otra liga requiere autorizacion
-			.anyRequest().authenticated()
 			.and()
 			//login con formulario
 			.formLogin().loginPage("/login").permitAll()

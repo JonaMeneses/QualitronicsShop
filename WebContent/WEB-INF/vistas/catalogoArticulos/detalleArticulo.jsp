@@ -57,9 +57,9 @@
 	        			<div class="product-count">
 	        				<label for="size">Cantidad</label>
 	        				<form class="display-flex ">
-							  <input type="number" class="form-control" id="cantidadArticulos" name="nCantidad">
+							  <input type="number" class="form-control" id="cantidadArticulos" value="1" name="nCantidad">
 							</form>
-							<a class="round-black-btn">Agregar al carrito</a>
+							<button onClick="agregarArticuloCarrito(${articulo.nId})" class="round-black-btn">Agregar al carrito</button>
 	        			</div>
 	        		</div>
 	        	</div>
@@ -89,3 +89,6 @@
 </div>
 </body>
 </html>
+
+<c:url var="scriptDetalle" value="/content/web/js/articulos/detalle.js" />
+<script src="${scriptDetalle}"></script>
