@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,7 @@ background-repeat: no-repeat;
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover">Registrarme</a><br>
+      <a class="underlineHover" onClick="obtenerFormularioUsuarioView()">Registrarme</a><br>
       <c:url value="/" var="home"/>
       <a href="${home}" class="underlineHover">Ir al sitio</a>
     </div>
@@ -61,9 +62,26 @@ background-repeat: no-repeat;
 	</div>
 </div>
 
+<div id="modalContainer"></div>
+	<div  id="modalCarrito"></div>
+	<div id="modalDialogContainer"></div>
+	<div id="toastDialog"></div>
+	
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+<c:url var="jquery" value="/content/js/jquery.js" />
+<script src="${jquery}"></script>
+<c:url var="fonwAwesomeJs" value="/content/fontAwesome/js/all.js" />
+<script src="${fonwAwesomeJs}"></script>
+ <c:url var="popper" value="/content/js/popper.js" />
+<script src="${popper}"></script>
+ <c:url var="bootstrapjs" value="/content/js/bootstrap.js" />
+<script src="${bootstrapjs}"></script>
+<c:url var="scriptIndex" value="/content/web/js/index.js" />
+<script src="${scriptIndex}"></script>
+<c:url var="jsDialog" value="/content/web/js/modalDialog.js" />
+<script src="${jsDialog}"></script>
+<c:url var="jsDataTable" value="/content/datatable/datatables.min.js"/>
+<script src="${jsDataTable}"></script>
+<c:url var="scriptLogin" value="/content/web/js/login.js" />
+<script src="${scriptLogin}"></script>
 </html>

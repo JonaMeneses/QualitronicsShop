@@ -39,20 +39,7 @@
 	        		<div class="product-dtl">
         				<div class="product-info">
 		        			<div class="product-name">${articulo.sNombre}</div>
-		        			<div class="reviews-counter">
-								<div class="rate">
-								    <input type="radio" id="star5" name="rate" value="5" checked />
-								    <label for="star5" title="text">5 stars</label>
-								    <input type="radio" id="star4" name="rate" value="4" checked />
-								    <label for="star4" title="text">4 stars</label>
-								    <input type="radio" id="star3" name="rate" value="3" checked />
-								    <label for="star3" title="text">3 stars</label>
-								    <input type="radio" id="star2" name="rate" value="2" />
-								    <label for="star2" title="text">2 stars</label>
-								    <input type="radio" id="star1" name="rate" value="1" />
-								    <label for="star1" title="text">1 star</label>
-								  </div>
-							</div>
+		        			
 		        			<div class="product-price-discount"><span><fmt:formatNumber pattern="MXN $#,###.##;MXN $-#,###.##" value = "${articulo.nPrecio}" type = "currency"/></span></div>
 		        			<c:if test="${articulo.nPromocion > 0}">
 	                     <div class="price text-warning"><i class="fas fa-tag text-warning">

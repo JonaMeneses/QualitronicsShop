@@ -18,6 +18,7 @@ function obtenerDetalleArticulo(nId){
 
 function agregarArticuloCarrito(nId){
 	let nCantidad = $("#cantidadArticulos").val();
+	if(nCantidad > 0){
     $.ajax({
         'url':"api/compras/agregarArticuloCarrito/"
         ,type: 'GET'
@@ -31,6 +32,9 @@ function agregarArticuloCarrito(nId){
             console.log(JSON.stringify(xhr));
         }
     });	
+}else{
+	modalDialog.showDialog("Aviso","Debe ingresar una cantidad mayor a 0",eBotones.YESNO,eIconos.ERROR,function(e){})
+}
 }
 
 

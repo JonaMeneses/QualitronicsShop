@@ -4,20 +4,22 @@ function guardar(){
 	if($("#nId").val() > 0){
 		 URL = "usuarios/actualizar";
 	} 
-	
-	console.log(URL);
-	
+		
 	$.ajax({
         url:URL
         ,type: $('#formulario').attr("method")
 		,data: $('#formulario').serialize()
         ,success:function(View){
-
-			if(View == "OK"){
-				alert("OK");
-			}else{
-				$("#adminContainer").html(View);
+			
+			$("#adminContainer").html(View);
+			$(".modal-body").html(View);
+			
+			if($(".modal-body").html()	)
+			{
+				$("#divRol").prop("hidden",true);
+				$("#divActivo").prop("hidden",true);
 			}
+			
         }
         ,error:function(xhr,status){
             console.log( "error en llamada");

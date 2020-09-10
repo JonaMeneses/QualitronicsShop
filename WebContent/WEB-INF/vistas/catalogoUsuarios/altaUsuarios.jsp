@@ -12,19 +12,19 @@
 		<form:form  method="post" id="formulario" modelAttribute="usuario">
 		<form>
 		<form:input id="nId" type="hidden" path="nId" />
-		    <div class="form-row">
-		      <div class="form-group col-md-6">
+		    <div class="row">
+		      <div class="form-group col-md-6 col-sm-6">
 		        <label for="txtEmail">Email</label>
 		        <form:input path="sEmail" type="text"  class="form-control" />
 				<form:errors path="sEmail" cssClass="text-danger"></form:errors>
 		      </div>
-		      <div class="form-group col-md-6">
+		      <div class="form-group col-md-6  col-sm-6"">
 		        <label for="txtContraseña">Password</label>
 		         <form:input path="sContraseña" type="password"  class="form-control" />
 				<form:errors path="sContraseña" cssClass="text-danger"></form:errors>
 		      </div>
 		    </div>		    
-		    <div class="form-row">
+		    <div class="row">
 		      <div class="form-group col-md-6">
 		        <label for="txtNombre">Nombre</label>
 		         <form:input path="sNombre" type="text"  class="form-control" />
@@ -36,7 +36,7 @@
 				<form:errors path="sPaterno" cssClass="text-danger"></form:errors>
 		      </div>
 		     </div>
-		      <div class="form-row">
+		      <div class="row">
 		      <div class="form-group col-md-4">
 		        <label for="sMaterno">Apellido Materno</label>
 		         <form:input path="sMaterno" type="text"  class="form-control" />
@@ -47,7 +47,7 @@
 		         <form:input path="nEdad" type="text"  class="form-control" />
 				<form:errors path="nEdad" cssClass="text-danger"></form:errors>
 		      </div>
-		      <div class="form-group col-md-4">
+		      <div class="form-group col-md-4" id="divRol">
 		        <label for="inputState">Rol</label>
 		         <form:select path="nIdRol"  class="form-control">
 			       		<form:option value="1" label="Usuario" />
@@ -55,7 +55,7 @@
 			       </form:select>
 					<form:errors path="nIdRol" cssClass="text-danger"></form:errors>
 		      </div>
-		      <div class="form-group col-md-1">
+		      <div class="form-group col-md-1" id="divActivo">
 		      
 		      	<label class="form-check-label" for="gridCheck">
 		          Activo
