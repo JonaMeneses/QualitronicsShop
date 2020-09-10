@@ -12,8 +12,8 @@
 	<link href="${bootstrap}" rel="stylesheet">
 	 <c:url var="fontAwesome" value="/content/fontAwesome/css/all.css" />
 	<link href="${fontAwesome}" rel="stylesheet">
-	<c:url var="datatable" value="/content/datatable/datatables.min.css" />
-	<link  type="text/css" href="${datatable}"/>	
+		<c:url var="datatablecss" value="/content/datatable/datatables.min.css" />
+	<link href="${datatablecss}" rel="stylesheet"/> 
    
 <link href="" rel="stylesheet">
 <meta charset="UTF-8">

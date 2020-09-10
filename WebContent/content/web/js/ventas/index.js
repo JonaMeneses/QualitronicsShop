@@ -8,6 +8,9 @@ function obtenerListado(){
            console.log(data);
 			$("#dataTableVentas").dataTable({
 				"aaData": data,
+				 "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
         "columns": [
             { "data": "nid" },
 			{ "data": "ventasArticulos.length"  },
@@ -22,7 +25,6 @@ function obtenerListado(){
                         '<i class="fas fa-eye"></i>'+
                     '</a>'+
                 '</div>' 
-                 
 				}
 			}
         ]
