@@ -64,7 +64,7 @@ public class ArticuloDao implements IArticuloDao {
 				"`sImgURL1`," + 
 				"`sImgURL2`," + 
 				"`sTags`," + 
-				"`nIdCategoria`) values (?,?,?,?,?,?,?,?,?,?)";
+				"`nIdCategoria`,`nPromocion`) values (?,?,?,?,?,?,?,?,?,?,?)";
 		System.out.println(SQL);
 		System.out.println(articulo.getsNombre());
 		System.out.println(articulo.getsDescripcion());
@@ -80,7 +80,7 @@ public class ArticuloDao implements IArticuloDao {
 						articulo.getsCaracteristica(),articulo.getsMarca(),
 						articulo.getnAño(),articulo.getnPrecio(),
 						articulo.getsImgURL1(),articulo.getsImgURL2(),
-						articulo.getsTag(), articulo.getnIdCategoria());
+						articulo.getsTag(), articulo.getnIdCategoria(),articulo.getnPromocion());
 	
 		
 		return result;
@@ -109,12 +109,12 @@ public class ArticuloDao implements IArticuloDao {
 				"sImgURL1 = ?," + 
 				"sImgURL2 = ?," + 
 				"sTags = ?," + 
-				"nIdCategoria = ? WHERE nId = ?";
+				"nIdCategoria = ?, nPromocion = ? WHERE nId = ?";
 		plantilla.update(SQL,articulo.getsNombre(),articulo.getsDescripcion(),
 						articulo.getsCaracteristica(),articulo.getsMarca(),
 						articulo.getnAño(),articulo.getnPrecio(),
 						articulo.getsImgURL1(),articulo.getsImgURL2(),
-						articulo.getsTag(), articulo.getnIdCategoria(), articulo.getnId());
+						articulo.getsTag(), articulo.getnIdCategoria(),articulo.getnPromocion(), articulo.getnId());
 		return result;
 	}
 

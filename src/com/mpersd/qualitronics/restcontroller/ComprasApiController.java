@@ -37,6 +37,7 @@ public class ComprasApiController {
 	@Autowired
 	private ICompraService compraService;
 	
+	
 	public ComprasApiController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -48,6 +49,9 @@ public class ComprasApiController {
 			
 			Articulo art =new Articulo(); 
 			art = articuloService.obtenerPorId(id);
+			art.setnPrecioNormal(art.getnPrecio());
+			//se agrega promocion en caso de que exista
+			art.setnPrecio(art.getnPrecio() - (art.getnPrecio()*art.getnPromocion()));
 			art.setnCantidad(nCantidad);
 			 
 			 Compra compra = (Compra)httpSession.getAttribute("compra");
@@ -119,7 +123,7 @@ public class ComprasApiController {
 			 if(compra != null) {
 				 compra.deleteArticulo(nId);
 			 }
-			 			
+			 compra.getTotal();		
 			httpSession.setAttribute("compra", compra);
 		
 		return new ResponseEntity<ResultBase>(result,HttpStatus.OK);
@@ -133,7 +137,6 @@ public class ComprasApiController {
 			Usuario usr = new Usuario(0,email,"","","","",0,0,"",null,true);
 			usr.setsEmail(email);
 			Compra compra = (Compra)httpSession.getAttribute("compra");
-			System.out.println("id usuario = "+email);
 			compra.setUsuario(usr);
 			
 			 if(compra == null) {
@@ -146,5 +149,26 @@ public class ComprasApiController {
 		return new ResponseEntity<ResultBase>(result,HttpStatus.OK);
 		
 	}
+	
+	//modificarCantidadArticuloCarrito
+	@GetMapping(path = "/modificarCantidadArticuloCarrito",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResultBase> modificarCantidadArticuloCarrito(HttpSession httpSession,@RequestParam("nId")int nId,@RequestParam("nCantidad")int nCantidad) {
+		ResultBase result = new ResultBase();
+
+			 
+			 Compra compra = (Compra)httpSession.getAttribute("compra");
+			 
+			 for (Articulo art : compra.getArticulos()) {
+				if(art.getnId() == nId) {
+					art.setnCantidad(nCantidad);
+				}
+			}
+			 compra.getTotal();
+			httpSession.setAttribute("compra", compra);
+		
+		return new ResponseEntity<ResultBase>(result,HttpStatus.OK);
+		
+	}
+	
 	
 }

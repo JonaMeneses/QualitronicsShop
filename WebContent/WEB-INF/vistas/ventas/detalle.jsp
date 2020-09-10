@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+ <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
   <div class="container">
     <div class="card">
@@ -44,7 +45,7 @@
                      <c:forEach var="articulo" items="${venta.getVentasArticulos()}">
                      <tr>
                           <td>${articulo.getArticulo().getSNnombre()}</td>
-                          <td>$${articulo.getNPrecioArticulo()}</td>
+                          <td><fmt:formatNumber pattern="MXN $#,###.##;MXN $-#,###.##" value = "${articulo.getNPrecioArticulo()}" type = "currency"/></td>
                           <td>${articulo.getNCantidad()}</td>
                       </tr>    
                      </c:forEach>               
@@ -57,7 +58,7 @@
         </div>
         <div class="card-footer text-muted">
             <div class="float-right">
-                <h3>Total de la venta: $${venta.getNTotal()}</h3> 
+                <h3>Total de la venta: <fmt:formatNumber pattern="MXN $#,###.##;MXN $-#,###.##" value = "${venta.getNTotal()}" type = "currency"/></h3> 
             </div>
           </div>
       </div>

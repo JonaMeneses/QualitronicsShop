@@ -20,6 +20,7 @@
           <th>Articulo</th>
           <th>Precio</th>
           <th>Categoria</th>
+          <th>Promocion</th>
       </tr>
        </thead>
       <tbody>
@@ -29,6 +30,7 @@
 							<td><c:out value="${articulo.sNombre}" /></td>
 							<td><c:out value="${articulo.nPrecio}" /></td>
 							<td><c:out value="${articulo.nIdCategoria}" /></td>
+							<td><c:out value="%${articulo.nPromocion * 100}" /></td>
 							<td>
 								<c:url var="detalle" value="/articulos/obtenerporid">
 									<c:param name="nId" value="${articulo.nId}"></c:param>

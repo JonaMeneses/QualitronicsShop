@@ -87,6 +87,7 @@ public class ArticuloController {
 	@RequestMapping(path="actualiza",method=RequestMethod.GET)
 	public String actualizarView(ModelMap modelo,@RequestParam("nId") int nId) {
 		Articulo articulo = articuloService.obtenerPorId(nId);
+		System.out.println("Joveeeen la prmocioooooonnnnnn "+articulo.getnPromocion());
 		modelo.addAttribute("articulo", articulo);
 		return "catalogoArticulos/altaArticulos";
 	}

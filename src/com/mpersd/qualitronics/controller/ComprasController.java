@@ -45,14 +45,11 @@ public class ComprasController {
 		
 			Articulo art =new Articulo(); 
 			art = articuloService.obtenerPorId(id);
+			art.setnPrecio(art.getnPrecio() - (art.getnPrecio()*art.getnPromocion()));
 			Compra compra = new Compra();
 			System.out.println("nombre de articulo: "+art.getsNombre());
+			System.out.println("precio con descuento: "+art.getnPrecio());
 			compra.setArticulo(art);	
-			
-			
-			
-			
-			
 	
 		
 		return new ResponseEntity<ResultBase>(result,HttpStatus.OK);

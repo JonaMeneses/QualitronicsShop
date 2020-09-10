@@ -82,7 +82,28 @@
 		      <div class="form-group col-md-4">
 		      </div>
 		    </div>
-		    
+		    <div class="form-row">
+		          <div class="form-group col-md-6">
+		          ${nPromocion}
+			       <label for="inputState">Promocion</label>
+			       <form:select path="nPromocion"  class="form-control">
+			       		<form:option value="0" label="Sin promocion" />
+			       		<form:option value="0.5" label="Descuento 5%" />
+       					<form:option value="0.10" label="Descuento 10%" />
+       					<form:option value="0.15" label="Descuento 15%" />
+       					<form:option value="0.20" label="Descuento 20%" />
+       					<form:option value="0.25" label="Descuento 25%" />
+       					<form:option value="0.30" label="Descuento 30%" />
+       					<form:option value="0.35" label="Descuento 35%" />
+       					<form:option value="0.40" label="Descuento 40%" />
+       					<form:option value="0.45" label="Descuento 45%" />
+       					<form:option value="0.50" label="Descuento 50%" />
+			       </form:select>
+					<form:errors path="nIdCategoria" cssClass="text-danger"></form:errors>
+		     	 </div>
+		      <div class="form-group col-md-4">
+		      </div>
+		    </div>
 		  </form>
 		  </form:form>
 		  <button onClick="guardar()" id="btnGuardar" class="btn btn-primary">Guardar</button> 

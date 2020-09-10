@@ -26,6 +26,7 @@ public class ArticuloToMapper  implements RowMapper<Articulo>{
 					,rs.getString("sTags")
 					,rs.getInt("nIdCategoria")
 					,rs.getDate("dFechaAlta")
-					,rs.getBoolean("bActivo"));
+					,rs.getBoolean("bActivo")
+					,rs.getDouble("nPromocion"));
 	}
 }

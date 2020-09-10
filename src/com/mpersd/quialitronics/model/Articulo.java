@@ -44,10 +44,18 @@ public class Articulo extends EntidadBase{
 	@Min(value = 1,message = "El minimo permitido es 1")
 	private int nIdCategoria;
 	private  int nCantidad = 0;
+	private  Double nPromocion = 0d;
+	private  Double nPrecioNormal = this.nPrecio;
 	
 	
 	
 	
+
+	
+
+
+
+
 
 	public Articulo() {
 		super();
@@ -55,7 +63,7 @@ public class Articulo extends EntidadBase{
 
 
 	public Articulo(int nId,String sNombre, String sDescripcion, String sCaracteristica, String sMarca, int nAño,
-			double nPrecio,String sImgURL1, String sImgURL2, String sTag,int nIdCategoria,Date dFechaCreacion,boolean bActivo) {
+			double nPrecio,String sImgURL1, String sImgURL2, String sTag,int nIdCategoria,Date dFechaCreacion,boolean bActivo,Double nPromocion) {
 		super(nId,dFechaCreacion,bActivo);
 		this.sNombre = sNombre;	
 		this.sDescripcion = sDescripcion;
@@ -67,6 +75,7 @@ public class Articulo extends EntidadBase{
 		this.sImgURL2 = sImgURL2;
 		this.sTag = sTag;
 		this.nIdCategoria = nIdCategoria;
+		this.nPromocion = nPromocion;
 	}
 
 	public String getsNombre() {
@@ -177,6 +186,23 @@ public class Articulo extends EntidadBase{
 		this.nCantidad = nCantidad;
 	}
 
+	public Double getnPromocion() {
+		return nPromocion;
+	}
+
+
+	public void setnPromocion(Double nPromocion) {
+		this.nPromocion = nPromocion;
+	}
+	
+	public Double getnPrecioNormal() {
+		return nPrecioNormal;
+	}
+
+
+	public void setnPrecioNormal(Double nPrecioNormal) {
+		this.nPrecioNormal = nPrecioNormal;
+	}
 	
 	
 
