@@ -35,9 +35,9 @@ public class CompraService implements ICompraService {
 
 	@Override @Transactional	
 	public ResultBase realizarCompra(Compra compra) {
-		compraDao.realizarCompra(compra);
+		return compraDao.realizarCompra(compra);
 		
-		return null;
+		 
 	}
 
 }

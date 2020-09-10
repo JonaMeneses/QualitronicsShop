@@ -2,6 +2,10 @@ package com.mpersd.qualitronics.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,10 +44,12 @@ public class Usuario implements Serializable {
 
 	//bi-directional many-to-one association to RolesUsuario
 	@OneToMany(mappedBy="usuario")
-	private List<RolesUsuario> rolesUsuarios;
+	@JsonIgnore
+	private List<RolesUsuario> rolesUsuarios = new ArrayList<RolesUsuario>();
 
 	//bi-directional many-to-one association to Venta
 	@OneToMany(mappedBy="usuario")
+	@JsonIgnore
 	private List<Venta> ventas;
 
 	public Usuario() {

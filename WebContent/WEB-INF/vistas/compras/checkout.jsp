@@ -314,9 +314,9 @@ body {oveflow-x: hidden }
         </div>
         </form>
       </div>
-   
 
-	
+	   <c:url var="inicio" value="/" />
+<a href="${inicio}" type="" id="btnRedireccion" hidden = true></a>
 	
 	
 	<div id="modalContainer"></div>

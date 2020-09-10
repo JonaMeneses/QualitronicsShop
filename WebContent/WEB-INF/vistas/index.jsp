@@ -1,4 +1,6 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@page import="com.mpersd.quialitronics.model.Compra"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	    pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>     
@@ -9,6 +11,8 @@
 	<link href="${bootstrap}" rel="stylesheet">
 	 <c:url var="fontAwesome" value="/content/fontAwesome/css/all.css" />
 	<link href="${fontAwesome}" rel="stylesheet">
+	<c:url var="datatable" value="/content/datatable/datatables.min.css" />
+	<link  type="text/css" href="${datatable}"/>	
    
 <link href="" rel="stylesheet">
 <meta charset="UTF-8">
@@ -66,7 +70,8 @@ body {oveflow-x: hidden }
 	          <li >
 	            <a id="cart-link" onClick="obtenerCarritoView()" class="trsn nav-link" title="Ver/Editar Carro">
 	              <i class="fas fa-shopping-cart"></i>
-	              <span id="nav-bar-cart"><span class="cart-size">0</span> Producto(s) | $0</span>
+	             
+	              <span id="nav-bar-cart"><span class="cart-size"> $${sessionScope.compra.nTotal}</span>
 	            </a>
 	          </li>
 	          
@@ -147,6 +152,7 @@ body {oveflow-x: hidden }
 	<div id="modalDialogContainer"></div>
 	<div id="toastDialog"></div>
 </body>
+  
  <c:url var="jquery" value="/content/js/jquery.js" />
 <script src="${jquery}"></script>
 <c:url var="fonwAwesomeJs" value="/content/fontAwesome/js/all.js" />
@@ -159,6 +165,9 @@ body {oveflow-x: hidden }
 <script src="${scriptIndex}"></script>
 <c:url var="jsDialog" value="/content/web/js/modalDialog.js" />
 <script src="${jsDialog}"></script>
+<c:url var="jsDataTable" value="/content/datatable/datatables.min.js"/>
+<script src="${jsDataTable}"></script>
+
 <script type="text/javascript">
 var $body = $(document);
 $body.bind('scroll', function() {
@@ -166,7 +175,9 @@ $body.bind('scroll', function() {
     if ($body.scrollLeft() !== 0) {
         $body.scrollLeft(0);
     }
+    
 });
+
 </script>
 
 </html>

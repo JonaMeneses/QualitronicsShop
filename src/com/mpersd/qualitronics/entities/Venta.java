@@ -17,22 +17,23 @@ public class Venta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int nId;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dFechaAlta;
+	private Date dFechaAlta = new Date();
 
 	private double nTotal;
 
 	private String sFolio;
 
 	//bi-directional many-to-one association to Usuario
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="nIdUsuario")
 	private Usuario usuario;
 
 	//bi-directional many-to-one association to VentasArticulo
-	@OneToMany(mappedBy="venta")
+	@OneToMany(mappedBy="venta", fetch = FetchType.EAGER)
 	private List<VentasArticulo> ventasArticulos;
 
 	public Venta() {

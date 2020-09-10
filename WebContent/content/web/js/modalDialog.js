@@ -121,6 +121,10 @@ const eIconos = {
                    callback(true);
                 });
 
+				$("#btnOkModal").click(function (e) {
+					callback();
+                });
+
                 $("#btnNoModal").click(function (e) {
                     callback(false);
                  });

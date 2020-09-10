@@ -3,12 +3,24 @@ app.factory("compraService",["$http","$q",function($http,$q){
 		
 	var factory={
 		comprar: comprar,
+		detalleCompra : detalleCompra
 	}
 	return factory;
 	
 	function comprar(sEmail){
 		deferred = $q.defer();
-		$http.get(URL+"?email=jona_meneses@hotmail.com")
+		$http.get(URL+"?email="+sEmail+"")
+		.then(response=>{
+			deferred.resolve(response.data);
+		},resp=>{
+			
+		});
+		return deferred.promise;
+	}
+	
+	function detalleCompra(id){
+		deferred = $q.defer();
+		$http.get("/qualitronicshop/ventas/detalle/?nId="+id)
 		.then(response=>{
 			deferred.resolve(response.data);
 		},resp=>{

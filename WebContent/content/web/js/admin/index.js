@@ -75,6 +75,22 @@ function obtenerFormularioArticulosView(){
     });
 }
 
+function obtenerVentasView(){
+	 $.ajax({
+        url:"ventas/"
+        ,type: 'GET'    
+        ,dataType: 'html'
+        ,success:function(View){
+           $("#adminContainer").html(View);
+			$("#adminContainer").prop("formulario","Ventas");
+        }
+        ,error:function(xhr,status){
+            console.log( "error en llamada");
+            console.log(JSON.stringify(xhr));
+        }
+    });
+}
+
 $(document).ready(function () {
 	obtenerDashboardView();
 	

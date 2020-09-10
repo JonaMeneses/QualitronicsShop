@@ -2,6 +2,9 @@ package com.mpersd.qualitronics.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +25,7 @@ public class Articulo implements Serializable {
 	private byte bActivo;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dFechaAlta;
+	private Date dFechaAlta = new Date();
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dFechaMod;
@@ -48,10 +51,12 @@ public class Articulo implements Serializable {
 	//bi-directional many-to-one association to Categoria
 	@ManyToOne
 	@JoinColumn(name="nIdCategoria")
+	@JsonIgnore
 	private Categoria categoria;
 
 	//bi-directional many-to-one association to VentasArticulo
 	@OneToMany(mappedBy="articulo")
+	@JsonIgnore
 	private List<VentasArticulo> ventasArticulos;
 
 	public Articulo() {

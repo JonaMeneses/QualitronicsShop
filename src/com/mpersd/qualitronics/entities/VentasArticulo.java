@@ -2,6 +2,9 @@ package com.mpersd.qualitronics.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 
 
@@ -16,19 +19,21 @@ public class VentasArticulo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int nId;
 
 	private int nCantidad;
 
-	private BigDecimal nPrecioArticulo;
+	private Double nPrecioArticulo;
 
 	//bi-directional many-to-one association to Venta
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="nIdVenta")
+	@JsonIgnore
 	private Venta venta;
 
 	//bi-directional many-to-one association to Articulo
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="nIdArticulo")
 	private Articulo articulo;
 
@@ -51,11 +56,11 @@ public class VentasArticulo implements Serializable {
 		this.nCantidad = nCantidad;
 	}
 
-	public BigDecimal getNPrecioArticulo() {
+	public Double getNPrecioArticulo() {
 		return this.nPrecioArticulo;
 	}
 
-	public void setNPrecioArticulo(BigDecimal nPrecioArticulo) {
+	public void setNPrecioArticulo(Double nPrecioArticulo) {
 		this.nPrecioArticulo = nPrecioArticulo;
 	}
 

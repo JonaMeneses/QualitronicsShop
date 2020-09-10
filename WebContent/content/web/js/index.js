@@ -79,7 +79,9 @@ function obtenerCarritoView(){
         ,dataType: 'html'
         ,success:function(view){
 			
-            modalDialog.showModal(view,"Carrito de compras",eBotones.YES,function(){},"modalCarrito");
+            modalDialog.showModal(view,"Carrito de compras",eBotones.YES,function(){
+				location.reload();
+			},"modalCarrito");
         }
         ,error:function(xhr,status){
             console.log( "error en llamada");

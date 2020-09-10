@@ -8,7 +8,9 @@ function obtenerDetalleView(nId){
 	console.log("entro");
             if(data)
             {
-				 modalDialog.showModal(data,"Detalle",eBotones.YES,function(){});
+				 modalDialog.showModal(data,"Detalle",eBotones.YES,function(){
+					location.reload();
+				});
             }
         }
         ,error:function(xhr,status){

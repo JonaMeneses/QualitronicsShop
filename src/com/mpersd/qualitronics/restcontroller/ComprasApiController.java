@@ -121,7 +121,6 @@ public class ComprasApiController {
 			 }
 			 			
 			httpSession.setAttribute("compra", compra);
-			
 		
 		return new ResponseEntity<ResultBase>(result,HttpStatus.OK);
 		
@@ -140,9 +139,9 @@ public class ComprasApiController {
 			 if(compra == null) {
 				 return new ResponseEntity<ResultBase>(HttpStatus.NOT_ACCEPTABLE);
 			 }
-			 compraService.realizarCompra(compra);
+			 result = compraService.realizarCompra(compra);
 			 
-			result.setMensajeRespuesta("ocurrio un error");
+			 httpSession.removeAttribute("compra");
 		
 		return new ResponseEntity<ResultBase>(result,HttpStatus.OK);
 		

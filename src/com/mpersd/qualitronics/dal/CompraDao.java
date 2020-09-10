@@ -30,23 +30,33 @@ public class CompraDao implements ICompraDao {
 	@Override
 	public ResultBase realizarCompra(Compra compra) {
 		
+		ResultBase result = new ResultBase();
+		
 		Venta venta = new Venta();
 		Query q = em.createQuery("SELECT u FROM Usuario u where u.sEmail = '"+ compra.getUsuario().getsEmail()+"'");
 		Usuario usr = (Usuario)q.getSingleResult();
 		venta.setNTotal(compra.getnTotal());
 		venta.setUsuario(usr);
 		List<VentasArticulo> articulos =new ArrayList<VentasArticulo>();
+		em.persist(venta);
+		em.flush();
 		for (com.mpersd.quialitronics.model.Articulo art : compra.getArticulos()) {
 			
 			VentasArticulo ventaArt = new VentasArticulo();
 			Articulo articulo  = em.find(Articulo.class,art.getnId());
 			ventaArt.setArticulo(articulo);
+			articulos.add(ventaArt);
+			ventaArt.setNCantidad(art.getnCantidad());
+			ventaArt.setNPrecioArticulo(art.getnPrecio());
+			Venta ventaRealizada = em.find(Venta.class, venta.getNId());
+			ventaArt.setVenta(ventaRealizada);
+			System.out.println("id venta = "+ ventaRealizada.getNId());
+			em.persist(ventaArt);
 		}
-		venta.setVentasArticulos(articulos);
+				
+		result.setEstadoRespuesta(venta.getNId());
 		
-		em.persist(venta);
-		
-		return null;
+		return result;
 	}
 
 }

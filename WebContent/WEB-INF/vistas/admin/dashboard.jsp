@@ -5,7 +5,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-3">
-              <button class="btn btn-outline-success"  style="width: 150px; height: 150px;"
+              <button class="btn btn-outline-success" onClick="obtenerVentasView()"  style="width: 150px; height: 150px;"
               type="button"><i class="fas fa-money-bill-alt"></i><br>Ventas totales: 1500269</button>
             </div>
             <div class="col-md-3">

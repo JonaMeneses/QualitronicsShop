@@ -1,21 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<link href="" rel="stylesheet">
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<div class="container">
-	<div class="row">
-		<div class="col-12">
+   	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>   
 
-		</div>
-	</div>
+  <div class="container" ng-app="venta">
+    <h1>Ventas</h1>
+    <br>    
+  <table class="table table-striped table-bordered" id="dataTableVentas">
+      <thead class="thead-default">
+      <tr>
+          <th>Folio</th>
+          <th>Articulos</th>
+          <th>Total</th>
+          <th>Fecha Venta</th>
+          <th>Usuario</th>
+          <th>Detalle</th>
+      </tr>
+         </thead>
+      <tbody>
+          
+ 
+  </table>
 </div>
-</body>
-<script type="text/javascript" src=""></script>
-<script type="text/javascript" src=""></script>
-</html>
+<c:url var="script" value="/content/web/js/ventas/index.js" />
+<script src="${script}"></script>
+       
